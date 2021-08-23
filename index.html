@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!<![endif]-->
+<html lang="en" class="h-100">
+  <head>
+    <!-- Metadata -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Company Directory</title>
+    <meta name="author" content="Matt Hand">
+    <meta name="description" content="User friendly directory for company personnel database.">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Favicons -->
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    <link rel="manifest" href="site.webmanifest">
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="vendors/bootstrap/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="css/style.css" type="text/css">
+    <!-- Font Awsome -->
+    <script src="https://kit.fontawesome.com/a9ec706d89.js" crossorigin="anonymous"></script>
+  </head>
+
+  <body class="h-100 d-flex flex-column">
+    <!--[if lt IE 7]>
+      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+
+    <header class="postion-sticky top-0 p-3 d-flex flex-column flex-lg-row justify-content-evenly">
+      <div class="d-flex justify-content-evenly align-items-center">
+        <h1 class="d-flex flex-column flex-md-row fw-bold">Company&nbsp;<span><span class="green-text">Directory</span><span class="red-text">.</span></span></h1>
+        <div class="w-50">
+        </div>
+      </div>
+      <div class="d-flex flex-row justify-content-evenly align-items-center">
+        <input type="text" name="search" id="search" class="rounded-pill" placeholder="Search"/>  
+        <button type="button" class="btn btn-primary displayAddPerson rounded-circle">+</button>
+      </div>
+    </header>
+
+    <main class="d-flex flex-column">
+      <div class="table-responsive mt-0 w-100">
+        <table id="database" class="table table-striped table-hover table-fixed mb-0">
+          <thead>
+            <tr>
+              <th scope="col" class="d-none">ID</th>
+              <th scope="col" class="position-sticky top-0">Name</th>
+              <th scope="col" class="d-none d-lg-table-cell position-sticky top-0">Job Title</th>
+              <th scope="col" class="d-none d-lg-table-cell position-sticky top-0">Email</th>
+              <th scope="col" class="d-none d-sm-table-cell position-sticky top-0">Department</th>
+              <th scope="col" class="d-none d-md-table-cell position-sticky top-0">Location</th>
+            </tr>
+          </thead>
+          <tbody>
+          </tbody>
+        </table>
+      </div>
+    </main>
+
+    <footer class="d-flex justify-content-evenly position-sticky bottom-0 p-1">
+      <button type="button" class="btn rounded-pill" id="displayDBManagement">Manage database</button>
+      <button type="button" class="btn rounded-pill" id="displayLoginBtn">
+        Admin Login
+      </button>
+    </footer>
+
+    <div class="modal fade" id="addPersonModal" tabindex="-1" aria-labelledby="addPersonModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h2 class="modal-title" id="addPersonModalLabel">Add Personnel</h2>
+            <button type="button" class="btn-close rounded-circle" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <div class="d-flex flex-column mb-2">
+              <h3 class="fs-4">First Name</h3>
+              <input type="text" id="caFirstName" class="text-end rounded-pill">
+            </div>
+            <div class="d-flex flex-column mb-2">
+              <h3 class="fs-4">Last Name</h3>
+              <input type="text" id="caLastName" class="text-end rounded-pill">
+            </div>
+            <div class="d-flex flex-column mb-2">
+              <h3 class="fs-4">Job Title</h3>
+              <input type="text" id="caJobTitle" class="text-end rounded-pill">
+            </div>
+            <div class="d-flex flex-column mb-2">
+              <h3 class="fs-4">Email</h3>
+              <input type="email" id="caEmail" class="text-end rounded-pill">
+            </div>
+            <div class="d-flex flex-column mb-2">
+              <h3 class="fs-4">Department</h3>
+              <select id="caDepartment" class="text-end departmentDD rounded-pill">
+              </select>
+            </div>
+            <div class="d-flex flex-column mb-2">
+              <h3 class="fs-4">Location</h3>
+              <select id="caLocation" class="text-end locationDD rounded-pill" disabled>
+              </select>
+            </div>
+          </div>
+          <div class="modal-footer d-flex justify-content-evenly">
+            <button type="button" class="btn rounded-pill" data-bs-dismiss="modal">Close</button>
+            <button type="button" class="btn rounded-pill" id="addPersonBtn">Add Personnel</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="modal fade" id="contactDisplayModal" tabindex="-1" aria-labelledby="contactDisplayModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h2 class="modal-title" id="contactDisplayModalLabel"></h2>
+            <button type="button" class="btn-close rounded-circle" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body d-flex flex-column" id="contactDisplayModalBody">
+            <div class="d-flex flex-column">
+              <h3 class="fs-4">ID</h3>
+              <span class="text-end" id="contactId"></span>
+            </div>
+            <div class="d-flex flex-column">
+              <h3 class="fs-4">First Name</h3>
+              <span class="text-end" id="contactFirstName"></span>
+            </div>
+            <div class="d-flex flex-column">
+              <h3 class="fs-4">Last Name</h3>
+              <span class="text-end" id="contactLastName"></span>
+            </div>
+            <div class="d-flex flex-column">
+              <h3 class="fs-4">Job Title</h3>
+              <span class="text-end" id="contactJobTitle"></span>
+            </div>
+            <div class="d-flex flex-column">
+              <h3 class="fs-4">Email</h3>
+              <span class="text-end" id="contactEmail"></span>
+            </div>
+            <div class="d-flex flex-column">
+              <h3 class="fs-4">Department</h3>
+              <span class="text-end" id="contactDepartment"></span>
+            </div>
+            <div class="d-flex flex-column">
+              <h3 class="fs-4">Location</h3>
+              <span class="text-end" id="contactLocation"></span>
+            </div>
+          </div>
+          <div class="modal-footer d-flex justify-content-evenly">
+            <button type="button" class="btn rounded-pill closeBtn" data-bs-dismiss="modal">Close</button>
+            <button type="button" class="btn rounded-pill" id="editContactDataBtn">Edit data</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal fade" id="contactEditModal" tabindex="-1" aria-labelledby="contactEditModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h2 class="modal-title" id="contactEditModalLabel"></h2>
+            <button type="button" class="btn-close rounded-circle" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body d-flex flex-column" id="contactEditModalBody">
+            <div class="d-flex flex-column mb-2">
+              <h3 class="fs-4">ID</h3>
+              <span class="text-end" id="ceId"></span>
+            </div>
+            <div class="d-flex flex-column mb-2">
+              <h3 class="fs-4">First Name</h3>
+              <input type="text" id="ceFirstName" class="text-end rounded-pill">
+            </div>
+            <div class="d-flex flex-column mb-2">
+              <h3 class="fs-4">Last Name</h3>
+              <input type="text" id="ceLastName" class="text-end rounded-pill">
+            </div>
+            <div class="d-flex flex-column mb-2">
+              <h3 class="fs-4">Job Title</h3>
+              <input type="text" id="ceJobTitle" class="text-end rounded-pill">
+            </div>
+            <div class="d-flex flex-column mb-2">
+              <h3 class="fs-4">Email</h3>
+              <input type="email" id="ceEmail" class="text-end rounded-pill">
+            </div>
+            <div class="d-flex flex-column mb-2">
+              <h3 class="fs-4">Department</h3>
+              <select id="ceDepartment" class="text-end departmentDD rounded-pill">
+              </select>
+            </div>
+            <div class="d-flex flex-column  mb-2">
+              <h3 class="fs-4">Location</h3>
+              <select id="ceLocation" class="text-end locationDD rounded-pill" disabled>
+              </select>
+            </div>
+          </div>
+          <div class="modal-footer d-flex justify-content-evenly">
+            <button type="button" class="btn rounded-pill" id="deleteBtn">Delete</button> 
+            <button type="button" class="btn cancelBtn rounded-pill" data-bs-dismiss="modal">Cancel</button>
+            <button type="button" class="btn rounded-pill" id="saveDataBtn">Save</button> 
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="modal fade" id="feedbackModal" tabindex="-1" aria-labelledby="feedbackModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h2 class="modal-title" id="feedbackModalLabel">Complete</h2>
+            <button type="button" class="btn-close rounded-circle" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+          </div>
+          <div class="modal-footer d-flex justify-content-center">
+            <button type="button" class="btn rounded-pill" data-bs-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal fade" id="dbManagementModal" tabindex="-1" aria-labelledby="dbManagementModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h2 class="modal-title" id="dbManagementModalLabel">Database Management</h2>
+            <button type="button" class="btn-close rounded-circle" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <h3 class="fs-4">Personnel</h3>
+            <div class="d-flex justify-content-evenly">
+              <button type="button" class="btn rounded-pill displayAddPerson">Add</button>
+            </div>
+            <hr/>
+            <h3 class="fs-4">Department</h3>
+            <div class="d-flex justify-content-evenly">
+              <button type="button" class="btn rounded-pill" id="displayAddDepartment">Add</button>
+              <button type="button" class="btn rounded-pill" id="displayDeleteDepartment">Delete</button>
+            </div>
+            <hr/>
+            <h3 class="fs-4">Location</h3>
+            <div class="d-flex justify-content-evenly">
+              <button type="button" class="btn rounded-pill" id="displayAddLocation">Add</button>
+              <button type="button" class="btn rounded-pill" id="displayDeleteLocation">Delete</button>          
+            </div>
+          </div>
+          <div class="modal-footer d-flex justify-content-center">
+            <button type="button" class="btn rounded-pill" data-bs-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal fade" id="manageLDModal" tabindex="-1" aria-labelledby="manageLDModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h2 class="modal-title" id="manageLDModalLabel"></h2>
+            <button type="button" class="btn-close rounded-circle" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <label for="addDepartmentName" class="department-name">Department</label>
+            <input type="text" id="addDepartmentName" class="text-end rounded-pill mb-2 department-name">
+            <label for="selectedDepartment" class="department-select">Department</label> 
+            <select id="selectedDepartment" class="text-end departmentDD rounded-pill mb-2 department-select">
+            </select>
+            <label for="addLocationName" class="location-name">Location</label>
+            <input type="text" id="addLocationName" class="text-end rounded-pill mb-2 location-name">
+            <label for="selectedLocation" class="location-select">Location</label>
+            <select id="selectedLocation" class="text-end locationDD rounded-pill mb-2 location-select">
+            </select>
+          </div>
+          <div class="modal-footer d-flex justify-content-evenly">
+            <button type="button" class="btn rounded-pill" id="manageLDSubmit"></button>
+            <button type="button" class="btn rounded-pill" data-bs-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal fade" id="confirmationModal" tabindex="-1" aria-labelledby="confirmationModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h2 class="modal-title" id="confirmationModalLabel">Confirm</h2>
+            <button type="button" class="btn-close rounded-circle" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <p>Confirm</p>
+          </div>
+          <div class="modal-footer d-flex justify-content-evenly">
+            <button type="button" class="btn rounded-pill" id="noConfirm">No</button>
+            <button type="button" class="btn rounded-pill" id="yesConfirm">Yes</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal fade" id="adminLoginModal" tabindex="-1" aria-labelledby="adminLoginModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h2 class="modal-title" id="adminLoginModalLabel">Admin Login</h2>
+            <button type="button" class="btn-close rounded-circle" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <p>Login to make changes to the directory.</p>
+            <p id="loginError" class="text-danger"></p>
+            <form>
+              <div class="form-group mb-2">
+                <label class="mb-1" for="uname">Username</label>
+                <input type="text" id="username" name="username" class="rounded-pill" placeholder="=admin" autocomplete="false" required>
+              </div>
+              <div class="form-group mb-2">
+                <label class="mb-1" for="pass">Password</label>
+                <input type="password" id="password" name="password" class="rounded-pill" placeholder="=password" autocomplete="false" required>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer d-flex justify-content-evenly">
+            <input type="submit" id="login" class="btn rounded-pill" value="Login">
+            <button type="button" class="btn rounded-pill" data-bs-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- Scripts -->
+    <script type="application/javascript" src="vendors/jquery/jquery.min.js" charset="utf-8"></script>
+    <script type="application/javascript" src="vendors/bootstrap/bootstrap.min.js" charset="utf-8"></script>
+    <script type="application/javascript" src="js/script.js" charset="utf-8"></script>
+  </body>
+</html>

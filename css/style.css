@@ -1,0 +1,91 @@
+:root {
+  --red: #FE4A49;
+  --green: #4AD7D1;
+  --blue: #001730;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif 
+}
+
+header {
+  background-color: var(--blue);
+  color: white;
+  height: 20%;
+}
+  .red-text {
+    color: var(--red);
+  }
+  .green-text {
+    color: var(--green);
+  }
+
+main {
+  height: 73%;
+}
+
+footer {
+  background-color: var(--blue);
+  height: 7%;
+}
+
+.table {
+  border-collapse: separate;
+  border-spacing: 0;
+}
+#database thead th {
+  background-color: var(--blue);
+  color: var(--green);
+  border: 1px solid var(--green);
+  cursor: pointer;
+} 
+tbody {
+  overflow-y: auto;
+} 
+tbody tr {
+  cursor: pointer;
+}
+
+.modal-content {
+  background-color: var(--blue);
+  color: white;
+}
+  .modal-header {
+    border-bottom: 1px solid var(--green);
+  }
+  .modal-footer {
+    border-top: 1px solid var(--green);
+  }
+
+label {
+  font-weight: bold;
+}
+input, select {
+  height: 30px;
+}
+.btn {
+  height: 40px;
+  min-width: 40px;
+  background-color: var(--blue);
+  border: 2px solid var(--green);
+  color: white;
+}
+  .btn:hover {
+    background-color: var(--green);
+    color: var(--blue);
+  }
+  .btn:focus {
+    box-shadow: 0 0 0 0.25rem #4AD7D140;
+  }
+.btn-close {
+  background-color: var(--red);
+  opacity: 1;
+}
+  .btn-close:focus {
+    box-shadow: 0 0 0 0.25rem #FE4A4940;
+  }
+#displayDBManagement,
+#editContactDataBtn,
+.displayAddPerson {
+  display: none;
+}
