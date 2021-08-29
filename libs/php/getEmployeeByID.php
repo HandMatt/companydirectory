@@ -1,8 +1,7 @@
 <?php
 
 	// example use from browser
-	// use insertLocation.php first to create new dummy record and then specify it's id in the command below
-	// http://localhost/companydirectory/libs/php/deleteLocationByID.php?id= <id>
+	// http://localhost/companydirectory/libs/php/getEmployeeByID.php?id=1
 
 	// remove next two lines for production
 	
@@ -33,9 +32,9 @@
 
 	}	
 
-	// $_REQUEST used for development / debugging. Remember to change to $_POST for production
+	// first query
 
-	$query = 'DELETE FROM location WHERE id = ' . $_REQUEST['id'];
+	$query = 'SELECT p.id, p.lastName, p.firstName, p.jobTitle, p.email, p.departmentID, d.name AS department, l.name AS location FROM personnel p LEFT JOIN department d ON (d.id = p.departmentID) LEFT JOIN location l ON (l.id = d.locationID) WHERE p.id =' . $_REQUEST['id'];
 
 	$result = $conn->query($query);
 	
@@ -53,12 +52,20 @@
 		exit;
 
 	}
+   
+   	$employee = [];
+
+	while ($row = mysqli_fetch_assoc($result)) {
+
+		array_push($employee, $row);
+
+	}
 
 	$output['status']['code'] = "200";
 	$output['status']['name'] = "ok";
 	$output['status']['description'] = "success";
 	$output['status']['returnedIn'] = (microtime(true) - $executionStartTime) / 1000 . " ms";
-	$output['data'] = [$_REQUEST];
+	$output['data']['employee'] = $employee;
 	
 	mysqli_close($conn);
 

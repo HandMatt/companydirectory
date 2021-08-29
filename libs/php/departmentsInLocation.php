@@ -1,7 +1,8 @@
 <?php
 
 	// example use from browser
-	// http://localhost/companydirectory/libs/php/getPersonnel.php?id=1
+	// use insertDepartment.php first to create new dummy record and then specify it's id in the command below
+	// http://localhost/companydirectory/libs/php/departmentsInLocation.php?id= <id>
 
 	// remove next two lines for production
 	
@@ -30,15 +31,13 @@
 
 		exit;
 
-	}	
-
-	// first query
-
-	$query = 'SELECT p.id, p.lastName, p.firstName, p.jobTitle, p.email, p.departmentID, d.name AS department, l.name AS location FROM personnel p LEFT JOIN department d ON (d.id = p.departmentID) LEFT JOIN location l ON (l.id = d.locationID) WHERE p.id =' . $_REQUEST['id'];
-
+	}
+	
+	$query = 'SELECT count(id) as dc FROM department where locationID = ' . $_REQUEST['id'];
+  
 	$result = $conn->query($query);
 	
-	if (!$result) {
+  if (!$result) {
 
 		$output['status']['code'] = "400";
 		$output['status']['name'] = "executed";
@@ -52,20 +51,20 @@
 		exit;
 
 	}
-   
-   	$personnel = [];
+
+  $departmentCount = [];
 
 	while ($row = mysqli_fetch_assoc($result)) {
 
-		array_push($personnel, $row);
+		array_push($departmentCount, $row);
 
 	}
-
-	$output['status']['code'] = "200";
+  
+  $output['status']['code'] = "200";
 	$output['status']['name'] = "ok";
 	$output['status']['description'] = "success";
 	$output['status']['returnedIn'] = (microtime(true) - $executionStartTime) / 1000 . " ms";
-	$output['data']['personnel'] = $personnel;
+	$output['data'] = $departmentCount;
 	
 	mysqli_close($conn);
 

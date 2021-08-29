@@ -1,7 +1,7 @@
 <?php
 
 	// example use from browser
-	// http://localhost/companydirectory/libs/php/insertEmployee.php?firstName=Matt&lastName=Hand&jobTitle=Software%20Developer&email=matthew%2ehand124@gmail%2ecom&departmentID=10
+	// http://localhost/companydirectory/libs/php/insertEmployee.php?firstName=Matt&lastName=Hand&jobTitle=Software%20Developer&email=matthewhand@handnet%2ecom&departmentID=10
 
 	// remove next two lines for production
 	

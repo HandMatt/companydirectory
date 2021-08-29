@@ -33,7 +33,7 @@
 
 	}	
 
-	// $_REQUEST used for development / debugging. Remember to cange to $_POST for production
+	// $_REQUEST used for development / debugging. Remember to change to $_POST for production
 
 	$query = 'DELETE FROM personnel WHERE id = ' . $_REQUEST['id'];
 
@@ -58,7 +58,7 @@
 	$output['status']['name'] = "ok";
 	$output['status']['description'] = "success";
 	$output['status']['returnedIn'] = (microtime(true) - $executionStartTime) / 1000 . " ms";
-	$output['data'] = [];
+	$output['data'] = [$_REQUEST];
 	
 	mysqli_close($conn);
 

@@ -1,8 +1,7 @@
 <?php
 
 	// example use from browser
-	// use insertLocation.php first to create new dummy record and then specify it's id in the command below
-	// http://localhost/companydirectory/libs/php/deleteLocationByID.php?id= <id>
+	// http://localhost/companydirectory/libs/php/updateDepartment.php?id=15&name=Better%20Department&locationID=2
 
 	// remove next two lines for production
 	
@@ -33,11 +32,11 @@
 
 	}	
 
-	// $_REQUEST used for development / debugging. Remember to change to $_POST for production
+	// $_REQUEST used for development / debugging. Remember to cange to $_POST for production
 
-	$query = 'DELETE FROM location WHERE id = ' . $_REQUEST['id'];
+  $query = 'UPDATE department SET name = "'.$_REQUEST['name'].'", locationID = '.$_REQUEST['locationID'].' WHERE id = '.$_REQUEST['id'].'';  
 
-	$result = $conn->query($query);
+  $result = $conn->query($query);
 	
 	if (!$result) {
 

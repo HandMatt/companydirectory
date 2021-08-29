@@ -30,15 +30,15 @@
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
 
-    <header class="postion-sticky top-0 p-3 d-flex flex-column flex-lg-row justify-content-evenly">
-      <div class="d-flex justify-content-evenly align-items-center">
-        <h1 class="d-flex flex-column flex-md-row fw-bold">Company&nbsp;<span><span class="green-text">Directory</span><span class="red-text">.</span></span></h1>
-        <div class="w-50">
-        </div>
+    <header class="postion-sticky top-0 d-flex flex-column flex-md-row justify-content-evenly p-3 border-bottom bg-info bg-gradient bg-opacity-25">
+      <div class="d-flex align-items-center">
+        <h1 class="d-flex flex-column fw-bold">Company Directory</h1>
       </div>
       <div class="d-flex flex-row justify-content-evenly align-items-center">
-        <input type="text" name="search" id="search" class="rounded-pill" placeholder="Search"/>  
-        <button type="button" class="btn btn-primary displayAddPerson rounded-circle">+</button>
+        <input type="text" name="search" id="search" placeholder="Search"/>  
+        <button type="button" class="btn btn-primary displayAddEmployee ms-md-3">
+          <img src="vendors/bootstrap/icons/person-plus-fill.svg" alt="Bootstrap" width="20" height="20">
+        </button>
       </div>
     </header>
 
@@ -48,11 +48,11 @@
           <thead>
             <tr>
               <th scope="col" class="d-none">ID</th>
-              <th scope="col" class="position-sticky top-0">Name</th>
-              <th scope="col" class="d-none d-lg-table-cell position-sticky top-0">Job Title</th>
-              <th scope="col" class="d-none d-lg-table-cell position-sticky top-0">Email</th>
-              <th scope="col" class="d-none d-sm-table-cell position-sticky top-0">Department</th>
-              <th scope="col" class="d-none d-md-table-cell position-sticky top-0">Location</th>
+              <th scope="col" class="position-sticky top-0 bg-primary bg-gradient text-white fw-normal">Name</th>
+              <th scope="col" class="d-none d-lg-table-cell position-sticky top-0 bg-primary bg-gradient text-white fw-normal">Job Title</th>
+              <th scope="col" class="d-none d-lg-table-cell position-sticky top-0 bg-primary bg-gradient text-white fw-normal">Email</th>
+              <th scope="col" class="d-none d-sm-table-cell position-sticky top-0 bg-primary bg-gradient text-white fw-normal">Department</th>
+              <th scope="col" class="d-none d-md-table-cell position-sticky top-0 bg-primary bg-gradient text-white fw-normal">Location</th>
             </tr>
           </thead>
           <tbody>
@@ -61,144 +61,128 @@
       </div>
     </main>
 
-    <footer class="d-flex justify-content-evenly position-sticky bottom-0 p-1">
-      <button type="button" class="btn rounded-pill" id="displayDBManagement">Manage database</button>
-      <button type="button" class="btn rounded-pill" id="displayLoginBtn">
-        Admin Login
-      </button>
+    <footer class="d-flex justify-content-evenly align-items-center position-sticky bottom-0 p-1 border-top bg-info bg-gradient bg-opacity-10">
+      <button type="button" class="btn btn-primary" id="displayDBManagement">Manage database</button>
     </footer>
 
-    <div class="modal fade" id="addPersonModal" tabindex="-1" aria-labelledby="addPersonModalLabel" aria-hidden="true">
+    <div class="modal fade" id="addEmployeeModal" tabindex="-1" aria-labelledby="addEmployeeModalLabel" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
-          <div class="modal-header">
-            <h2 class="modal-title" id="addPersonModalLabel">Add Personnel</h2>
-            <button type="button" class="btn-close rounded-circle" data-bs-dismiss="modal" aria-label="Close"></button>
+          <div class="modal-header bg-info bg-gradient bg-opacity-25">
+            <h2 class="modal-title" id="addEmployeeModalLabel">Add Employee</h2>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
-          <div class="modal-body">
-            <div class="d-flex flex-column mb-2">
-              <h3 class="fs-4">First Name</h3>
-              <input type="text" id="caFirstName" class="text-end rounded-pill">
+          <div class="modal-body mx-auto">
+            <div class="form-floating mb-1">
+              <input type="text" class="form-control" id="addFirstName" placeholder="John">
+              <label for="addFirstName">First name</label>
             </div>
-            <div class="d-flex flex-column mb-2">
-              <h3 class="fs-4">Last Name</h3>
-              <input type="text" id="caLastName" class="text-end rounded-pill">
+            <div class="form-floating mb-1">
+              <input type="text" class="form-control" id="addLastName" placeholder="Doe">
+              <label for="addLastName">Last Name</label>
             </div>
-            <div class="d-flex flex-column mb-2">
-              <h3 class="fs-4">Job Title</h3>
-              <input type="text" id="caJobTitle" class="text-end rounded-pill">
+            <div class="form-floating mb-1">
+              <input type="text" class="form-control" id="addJobTitle" placeholder="Worker">
+              <label for="addJobTitle">Job Title</label>
             </div>
-            <div class="d-flex flex-column mb-2">
-              <h3 class="fs-4">Email</h3>
-              <input type="email" id="caEmail" class="text-end rounded-pill">
+            <div class="form-floating mb-1">
+              <input type="email" class="form-control" id="addEmail" placeholder="j.doe@google.com">
+              <label for="addEmail">Email</label>
             </div>
-            <div class="d-flex flex-column mb-2">
-              <h3 class="fs-4">Department</h3>
-              <select id="caDepartment" class="text-end departmentDD rounded-pill">
+            <div class="form-floating">
+              <select class="form-control departmentDD" id="addDepartment">
               </select>
-            </div>
-            <div class="d-flex flex-column mb-2">
-              <h3 class="fs-4">Location</h3>
-              <select id="caLocation" class="text-end locationDD rounded-pill" disabled>
-              </select>
+              <label for="addDepartment">Department</h3>
             </div>
           </div>
-          <div class="modal-footer d-flex justify-content-evenly">
-            <button type="button" class="btn rounded-pill" data-bs-dismiss="modal">Close</button>
-            <button type="button" class="btn rounded-pill" id="addPersonBtn">Add Personnel</button>
+          <div class="modal-footer d-flex justify-content-evenly bg-info bg-gradient bg-opacity-10">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+            <button type="button" class="btn btn-primary" id="addEmployeeBtn">Save</button>
           </div>
         </div>
       </div>
     </div>
     
-    <div class="modal fade" id="contactDisplayModal" tabindex="-1" aria-labelledby="contactDisplayModalLabel" aria-hidden="true">
+    <div class="modal fade" id="employeeDisplayModal" tabindex="-1" aria-labelledby="employeeDisplayModalLabel" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
-          <div class="modal-header">
-            <h2 class="modal-title" id="contactDisplayModalLabel"></h2>
-            <button type="button" class="btn-close rounded-circle" data-bs-dismiss="modal" aria-label="Close"></button>
+          <div class="modal-header bg-info bg-gradient bg-opacity-25">
+            <h2 class="modal-title" id="employeeDisplayModalLabel"></h2>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
-          <div class="modal-body d-flex flex-column" id="contactDisplayModalBody">
+          <div class="modal-body mx-auto" id="employeeDisplayModalBody">
             <div class="d-flex flex-column">
-              <h3 class="fs-4">ID</h3>
-              <span class="text-end" id="contactId"></span>
+              <small>First Name</small>
+              <span class="" id="employeeFirstName"></span>
             </div>
+            <hr class="my-1">
             <div class="d-flex flex-column">
-              <h3 class="fs-4">First Name</h3>
-              <span class="text-end" id="contactFirstName"></span>
+              <small>Last Name</small>
+              <span class="" id="employeeLastName"></span>
             </div>
+            <hr class="my-1">
             <div class="d-flex flex-column">
-              <h3 class="fs-4">Last Name</h3>
-              <span class="text-end" id="contactLastName"></span>
+              <small>Job Title</small>
+              <span class="" id="employeeJobTitle"></span>
             </div>
+            <hr class="my-1">
             <div class="d-flex flex-column">
-              <h3 class="fs-4">Job Title</h3>
-              <span class="text-end" id="contactJobTitle"></span>
+              <small>Email</small>
+              <span class="" id="employeeEmail"></span>
             </div>
+            <hr class="my-1">
             <div class="d-flex flex-column">
-              <h3 class="fs-4">Email</h3>
-              <span class="text-end" id="contactEmail"></span>
+              <small>Department</small>
+              <span class="" id="employeeDepartment"></span>
             </div>
+            <hr class="my-1">
             <div class="d-flex flex-column">
-              <h3 class="fs-4">Department</h3>
-              <span class="text-end" id="contactDepartment"></span>
-            </div>
-            <div class="d-flex flex-column">
-              <h3 class="fs-4">Location</h3>
-              <span class="text-end" id="contactLocation"></span>
+              <small>Location</small>
+              <span class="" id="employeeLocation"></span>
             </div>
           </div>
-          <div class="modal-footer d-flex justify-content-evenly">
-            <button type="button" class="btn rounded-pill closeBtn" data-bs-dismiss="modal">Close</button>
-            <button type="button" class="btn rounded-pill" id="editContactDataBtn">Edit data</button>
+          <div class="modal-footer d-flex justify-content-evenly bg-info bg-gradient bg-opacity-10">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary" id="editEmployeeDataBtn">Edit</button>
           </div>
         </div>
       </div>
     </div>
 
-    <div class="modal fade" id="contactEditModal" tabindex="-1" aria-labelledby="contactEditModalLabel" aria-hidden="true">
+    <div class="modal fade" id="employeeEditModal" tabindex="-1" aria-labelledby="employeeEditModalLabel" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
-          <div class="modal-header">
-            <h2 class="modal-title" id="contactEditModalLabel"></h2>
-            <button type="button" class="btn-close rounded-circle" data-bs-dismiss="modal" aria-label="Close"></button>
+          <div class="modal-header bg-info bg-gradient bg-opacity-25">
+            <h2 class="modal-title" id="employeeEditModalLabel"></h2>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
-          <div class="modal-body d-flex flex-column" id="contactEditModalBody">
-            <div class="d-flex flex-column mb-2">
-              <h3 class="fs-4">ID</h3>
-              <span class="text-end" id="ceId"></span>
+          <div class="modal-body mx-auto" id="employeeEditModalBody">
+            <div class="form-floating mb-1">
+              <input type="text" class="form-control" id="editFirstName" placeholder="John">
+              <label for="addFirstName">First name</label>
             </div>
-            <div class="d-flex flex-column mb-2">
-              <h3 class="fs-4">First Name</h3>
-              <input type="text" id="ceFirstName" class="text-end rounded-pill">
+            <div class="form-floating mb-1">
+              <input type="text" class="form-control" id="editLastName" placeholder="Doe">
+              <label for="addLastName">Last Name</label>
             </div>
-            <div class="d-flex flex-column mb-2">
-              <h3 class="fs-4">Last Name</h3>
-              <input type="text" id="ceLastName" class="text-end rounded-pill">
+            <div class="form-floating mb-1">
+              <input type="text" class="form-control" id="editJobTitle" placeholder="Worker">
+              <label for="addJobTitle">Job Title</label>
             </div>
-            <div class="d-flex flex-column mb-2">
-              <h3 class="fs-4">Job Title</h3>
-              <input type="text" id="ceJobTitle" class="text-end rounded-pill">
+            <div class="form-floating mb-1">
+              <input type="email" class="form-control" id="editEmail" placeholder="j.doe@google.com">
+              <label for="addEmail">Email</label>
             </div>
-            <div class="d-flex flex-column mb-2">
-              <h3 class="fs-4">Email</h3>
-              <input type="email" id="ceEmail" class="text-end rounded-pill">
-            </div>
-            <div class="d-flex flex-column mb-2">
-              <h3 class="fs-4">Department</h3>
-              <select id="ceDepartment" class="text-end departmentDD rounded-pill">
+            <div class="form-floating">
+              <select class="form-control departmentDD" id="editDepartment">
               </select>
-            </div>
-            <div class="d-flex flex-column  mb-2">
-              <h3 class="fs-4">Location</h3>
-              <select id="ceLocation" class="text-end locationDD rounded-pill" disabled>
-              </select>
+              <label for="addDepartment">Department</h3>
             </div>
           </div>
-          <div class="modal-footer d-flex justify-content-evenly">
-            <button type="button" class="btn rounded-pill" id="deleteBtn">Delete</button> 
-            <button type="button" class="btn cancelBtn rounded-pill" data-bs-dismiss="modal">Cancel</button>
-            <button type="button" class="btn rounded-pill" id="saveDataBtn">Save</button> 
+          <div class="modal-footer d-flex justify-content-evenly bg-info bg-gradient bg-opacity-10">
+            <button type="button" class="btn btn-danger" id="deleteBtn">Delete</button> 
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+            <button type="button" class="btn btn-primary" id="saveDataBtn">Save</button> 
           </div>
         </div>
       </div>
@@ -207,14 +191,14 @@
     <div class="modal fade" id="feedbackModal" tabindex="-1" aria-labelledby="feedbackModalLabel" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
-          <div class="modal-header">
+          <div class="modal-header bg-info bg-gradient bg-opacity-25">
             <h2 class="modal-title" id="feedbackModalLabel">Complete</h2>
-            <button type="button" class="btn-close rounded-circle" data-bs-dismiss="modal" aria-label="Close"></button>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
-          <div class="modal-body">
+          <div class="modal-body mx-auto">
           </div>
-          <div class="modal-footer d-flex justify-content-center">
-            <button type="button" class="btn rounded-pill" data-bs-dismiss="modal">Close</button>
+          <div class="modal-footer d-flex justify-content-center bg-info bg-gradient bg-opacity-10">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
           </div>
         </div>
       </div>
@@ -223,30 +207,32 @@
     <div class="modal fade" id="dbManagementModal" tabindex="-1" aria-labelledby="dbManagementModalLabel" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
-          <div class="modal-header">
+          <div class="modal-header bg-info bg-gradient bg-opacity-25">
             <h2 class="modal-title" id="dbManagementModalLabel">Database Management</h2>
-            <button type="button" class="btn-close rounded-circle" data-bs-dismiss="modal" aria-label="Close"></button>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
-          <div class="modal-body">
-            <h3 class="fs-4">Personnel</h3>
+          <div class="modal-body mx-auto">
+            <h3 class="fs-4">Employee</h3>
             <div class="d-flex justify-content-evenly">
-              <button type="button" class="btn rounded-pill displayAddPerson">Add</button>
+              <button type="button" class="btn btn-primary displayAddEmployee">Add</button>
             </div>
             <hr/>
             <h3 class="fs-4">Department</h3>
             <div class="d-flex justify-content-evenly">
-              <button type="button" class="btn rounded-pill" id="displayAddDepartment">Add</button>
-              <button type="button" class="btn rounded-pill" id="displayDeleteDepartment">Delete</button>
+              <button type="button" class="btn btn-primary" id="displayEditDepartment">Edit</button>
+              <button type="button" class="btn btn-primary mx-3" id="displayAddDepartment">Add</button>
+              <button type="button" class="btn btn-primary" id="displayDeleteDepartment">Delete</button>
             </div>
             <hr/>
             <h3 class="fs-4">Location</h3>
             <div class="d-flex justify-content-evenly">
-              <button type="button" class="btn rounded-pill" id="displayAddLocation">Add</button>
-              <button type="button" class="btn rounded-pill" id="displayDeleteLocation">Delete</button>          
+              <button type="button" class="btn btn-primary" id="displayEditLocation">Edit</button>
+              <button type="button" class="btn btn-primary mx-3" id="displayAddLocation">Add</button>
+              <button type="button" class="btn btn-primary" id="displayDeleteLocation">Delete</button>          
             </div>
           </div>
-          <div class="modal-footer d-flex justify-content-center">
-            <button type="button" class="btn rounded-pill" data-bs-dismiss="modal">Close</button>
+          <div class="modal-footer d-flex justify-content-center bg-info bg-gradient bg-opacity-10">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
           </div>
         </div>
       </div>
@@ -255,25 +241,33 @@
     <div class="modal fade" id="manageLDModal" tabindex="-1" aria-labelledby="manageLDModalLabel" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
-          <div class="modal-header">
+          <div class="modal-header bg-info bg-gradient bg-opacity-25">
             <h2 class="modal-title" id="manageLDModalLabel"></h2>
-            <button type="button" class="btn-close rounded-circle" data-bs-dismiss="modal" aria-label="Close"></button>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
-          <div class="modal-body">
-            <label for="addDepartmentName" class="department-name">Department</label>
-            <input type="text" id="addDepartmentName" class="text-end rounded-pill mb-2 department-name">
-            <label for="selectedDepartment" class="department-select">Department</label> 
-            <select id="selectedDepartment" class="text-end departmentDD rounded-pill mb-2 department-select">
-            </select>
-            <label for="addLocationName" class="location-name">Location</label>
-            <input type="text" id="addLocationName" class="text-end rounded-pill mb-2 location-name">
-            <label for="selectedLocation" class="location-select">Location</label>
-            <select id="selectedLocation" class="text-end locationDD rounded-pill mb-2 location-select">
-            </select>
+          <div class="modal-body mx-auto">
+            <div class="form-floating mb-1" id="departmentSelect">
+              <select class="form-control departmentDD" id="selectedDepartment">
+              </select>
+              <label for="selectedDepartment">Department select</label> 
+            </div>
+            <div class="form-floating mb-1" id="departmentName">
+              <input type="text" class="form-control" id="addDepartmentName" placeholder="department">
+              <label for="addDepartmentName">Department name</label>
+            </div>
+            <div class="form-floating mb-1" id="locationSelect">
+              <select class="form-control locationDD" id="selectedLocation">
+              </select>
+              <label for="selectedLocation">Location select</label>
+            </div>
+            <div class="form-floating mb-1" id="locationName">
+              <input type="text" class="form-control" id="addLocationName" placeholder="location">
+              <label for="addLocationName">Location name</label>
+            </div>
           </div>
-          <div class="modal-footer d-flex justify-content-evenly">
-            <button type="button" class="btn rounded-pill" id="manageLDSubmit"></button>
-            <button type="button" class="btn rounded-pill" data-bs-dismiss="modal">Close</button>
+          <div class="modal-footer d-flex justify-content-evenly bg-info bg-gradient bg-opacity-10">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+            <button type="button" class="btn btn-primary" id="manageLDSubmit"></button>
           </div>
         </div>
       </div>
@@ -282,50 +276,28 @@
     <div class="modal fade" id="confirmationModal" tabindex="-1" aria-labelledby="confirmationModalLabel" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
-          <div class="modal-header">
+          <div class="modal-header bg-info bg-gradient bg-opacity-25">
             <h2 class="modal-title" id="confirmationModalLabel">Confirm</h2>
-            <button type="button" class="btn-close rounded-circle" data-bs-dismiss="modal" aria-label="Close"></button>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
-          <div class="modal-body">
+          <div class="modal-body mx-auto">
             <p>Confirm</p>
           </div>
           <div class="modal-footer d-flex justify-content-evenly">
-            <button type="button" class="btn rounded-pill" id="noConfirm">No</button>
-            <button type="button" class="btn rounded-pill" id="yesConfirm">Yes</button>
+            <button type="button" class="btn btn-secondary" id="noConfirm">Cancel</button>
+            <button type="button" class="btn btn-primary" id="yesConfirm"></button>
           </div>
         </div>
       </div>
     </div>
 
-    <div class="modal fade" id="adminLoginModal" tabindex="-1" aria-labelledby="adminLoginModalLabel" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h2 class="modal-title" id="adminLoginModalLabel">Admin Login</h2>
-            <button type="button" class="btn-close rounded-circle" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body">
-            <p>Login to make changes to the directory.</p>
-            <p id="loginError" class="text-danger"></p>
-            <form>
-              <div class="form-group mb-2">
-                <label class="mb-1" for="uname">Username</label>
-                <input type="text" id="username" name="username" class="rounded-pill" placeholder="=admin" autocomplete="false" required>
-              </div>
-              <div class="form-group mb-2">
-                <label class="mb-1" for="pass">Password</label>
-                <input type="password" id="password" name="password" class="rounded-pill" placeholder="=password" autocomplete="false" required>
-              </div>
-            </form>
-          </div>
-          <div class="modal-footer d-flex justify-content-evenly">
-            <input type="submit" id="login" class="btn rounded-pill" value="Login">
-            <button type="button" class="btn rounded-pill" data-bs-dismiss="modal">Close</button>
-          </div>
+    <div class="position-absolute h-100 w-100" id="preload">
+      <div class="h-100 d-flex justify-content-center align-items-center">
+        <div class="spinner-border text-primary" id="spinner" role="status">
+          <span class="visually-hidden">Loading...</span>
         </div>
       </div>
     </div>
-
 
     <!-- Scripts -->
     <script type="application/javascript" src="vendors/jquery/jquery.min.js" charset="utf-8"></script>
