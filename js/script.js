@@ -7,7 +7,7 @@ const manageDBModal = new bootstrap.Modal(document.getElementById('dbManagementM
 const manageLDModal = new bootstrap.Modal(document.getElementById('manageLDModal'));
 const confirmModal = new bootstrap.Modal(document.getElementById('confirmationModal'));
 
-async function populateTable() {
+function populateTable() {
   $.getJSON('libs/php/getAllPersonnel.php')
   .done(function(JSON) {
     $('#database tbody').html('');
@@ -15,6 +15,7 @@ async function populateTable() {
     for (let i in db) {
       appendEntry(db, i);
     }
+    $('#preload').hide();
   });
 }
 
@@ -700,7 +701,7 @@ $('#displayDeleteLocation').click(() => {
 });
 
 $(document).ready(() => {
+  populateTable();
   populateDepartmentDatalist();
   populateLocationDatalist();
-  populateTable().then($('#preload').hide());
-})
+});
