@@ -520,6 +520,11 @@ $('#editEmployeeDataBtn').click(() => {
   $('#editJobTitle').val(`${selectedEmployee.jobTitle}`);
   $('#editEmail').val(`${selectedEmployee.email}`);
   $('#editDepartment').val(`${selectedEmployee.departmentID}`);
+  $('#employeeEditModal .btn-secondary').off();
+  $('#employeeEditModal .btn-secondary').click(() => {
+    editEmployeeModal.hide();
+    employeeDisplayModal.show();
+  });
   employeeDisplayModal.hide();
   editEmployeeModal.show();
 });
