@@ -1,5 +1,8 @@
 <?php
 
+	// example use from browser
+	// http://localhost/companydirectory/libs/php/getAllDepartments.php
+
 	// remove next two lines for production
 	
 	ini_set('display_errors', 'On');
@@ -29,7 +32,7 @@
 
 	}	
 
-	$query = 'SELECT id, name, locationID FROM department';
+	$query = 'SELECT id, name, locationID FROM department ORDER BY name';
 
 	$result = $conn->query($query);
 	
