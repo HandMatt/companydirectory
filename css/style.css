@@ -10,12 +10,6 @@
 /* Page Display */
 header {
   height: 15%;
-  background-image: url('../image/network-3357642_1920.jpg');
-  background-position: center;
-  background-size: cover;
-}
-h1 {
-  text-shadow: 2px 1px 0px rgba(13,202,240, 0.15), 4px 3px 0px rgba(0,0,0,0.15);
 }
 main {
   height: 78%;
